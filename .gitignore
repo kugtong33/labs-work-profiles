@@ -1,0 +1,14 @@
+# Local credentials and generated output (tracked examples are placeholders).
+.env
+.env.*
+.secrets
+secrets.env
+!examples/**/secrets.env
+profiles/
+hosts.yml
+*.pem
+*.key
+coverage/
+
+# Local OpenCode harness, dependencies, and instructions.
+/.opencode/

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Resolve the real client using the system utility path, not our wrapper PATH.
+tool=${0##*/}
+case "$tool" in ssh|scp|sftp) ;; *) exit 2 ;; esac
+client=$(command -p -v "$tool") || exit 127
+if [[ -n ${WORK_PROFILE_SSH_CONFIG:-} ]]; then
+    exec "$client" -F "$WORK_PROFILE_SSH_CONFIG" "$@"
+fi
+exec "$client" "$@"
